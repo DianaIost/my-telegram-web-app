@@ -3,62 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой хвостик</title>
+    <title>Заполнение данных</title>
+
     <style>
-        /* Основной стиль для фона */
+        /* Подключаем шрифты */
+        @font-face {
+            font-family: 'ActayWide';
+            src: url('fonts/ActayWide-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'ActayRegular';
+            src: url('fonts/Actay-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ActayRegularItalic';
+            src: url('fonts/Actay-RegularItalic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
         body {
+            font-family: 'Actay', sans-serif; /* Для остального текста */
             margin: 0;
+            padding: 0;
             height: 100vh;
+            background-color: #f9f9f9;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            overflow: hidden;
         }
 
-        /* Стиль для фона загрузочного экрана */
-        .loading-container {
+        .container {
             width: 100%;
-            height: 100%;
-            background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-            background-size: cover; /* Масштабируем картинку, чтобы она заполнила весь экран */
-            background-position: center; /* Центрируем изображение */
+            max-width: 400px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        /* Ожидаемый экран с текстом загрузки */
-        .loading {
-            font-size: 2.5em;
-            color: transparent;
+        /* Заголовок с шрифтом ActayWide */
+        h1 {
+            font-family: 'ActayWide', sans-serif; /* Применяем шрифт ActayWide для заголовка */
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
 
-        /* Адаптивные стили для мобильных устройств */
+        /* Поле ввода клички с шрифтом ActayRegular */
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            font-family: 'ActayRegularItalic', sans-serif; /* Изначально используется шрифт Actay-RegularItalic */
+        }
+
+        .input-field:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Кнопки для выбора пола собаки с шрифтом ActayRegular */
+        .button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1em;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+            font-family: 'ActayRegular', sans-serif;
+        }
+
+        .button:disabled {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .button-gray {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .button-active {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .button-gray:hover {
+            background-color: #ddd;
+        }
+
+        .button-active:hover {
+            background-color: #45a049;
+        }
+
+        .button-gray.selected {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .button-gray.selected:hover {
+            background-color: #45a049;
+        }
+
+        /* Выбор возраста с шрифтом ActayRegular */
+        select {
+            width: 48%;
+            padding: 10px;
+            margin: 10px 1%;
+            font-size: 1em;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            font-family: 'ActayRegular', sans-serif;
+        }
+
+        /* Адаптивность */
         @media (max-width: 600px) {
-            .loading-container {
-                background-size: cover; /* Для мобильных устройств */
-            }
-        }
-
-        /* Для экранов от 601px */
-        @media (min-width: 601px) {
-            .loading-container {
-                background-size: cover; /* Для планшетов и более крупных экранов */
+            .container {
+                width: 90%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="loading">
-            <h1>Загрузка...</h1>
+
+    <div class="container">
+        <h1>Давайте познакомимся!</h1>
+
+        <!-- Строки с шрифтом ActayRegular -->
+        <div class="input-field" id="dog-name" onclick="openNameInput()">Введите кличку</div>
+        <div class="input-field">Какой возраст?</div>
+        <div class="input-field">Зная возраст собаки, мы предложим лучший индивидуальный план для тренировок и прогулок.</div>
+
+        <!-- Кнопки для выбора пола -->
+        <div>
+            <button class="button button-gray" id="male" onclick="selectGender('male')">Мальчик</button>
+            <button class="button button-gray" id="female" onclick="selectGender('female')">Девочка</button>
         </div>
+
+        <!-- Поля для выбора возраста -->
+        <div>
+            <select id="years">
+                <option value="0">0 лет</option>
+                <option value="1">1 год</option>
+                <option value="2">2 года</option>
+                <option value="3">3 года</option>
+                <option value="4">4 года</option>
+            </select>
+
+            <select id="months">
+                <option value="0">0 месяцев</option>
+                <option value="1">1 месяц</option>
+                <option value="2">2 месяца</option>
+                <option value="3">3 месяца</option>
+                <option value="4">4 месяца</option>
+            </select>
+        </div>
+
+        <!-- Кнопка "Далее" -->
+        <button class="button button-active" id="next-btn" onclick="nextStep()">Далее</button>
     </div>
 
     <script>
-        setTimeout(function() {
-            document.querySelector('.loading').style.display = 'none';
-        }, 3000); // Время задержки 3 секунды для эффекта загрузки
+        let dogName = "";
+        let gender = "";
+        let isFormComplete = false;
+
+        // Открытие клавиатуры для ввода клички собаки
+        function openNameInput() {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Введите кличку';
+            input.classList.add('input-field');
+            input.autofocus = true;
+            document.getElementById('dog-name').innerHTML = '';
+            document.getElementById('dog-name').appendChild(input);
+
+            // Автоматически открывается клавиатура
+            input.addEventListener('blur', function() {
+                dogName = input.value;
+                if (dogName !== '') {
+                    document.getElementById('dog-name').innerText = dogName;
+                    // Меняем шрифт после ввода
+                    document.getElementById('dog-name').style.fontFamily = 'ActayWide'; // Меняем на ActayWide-Bold
+                    checkFormCompletion();
+                }
+            });
+        }
+
+        // Выбор пола собаки
+        function selectGender(selectedGender) {
+            gender = selectedGender;
+            const maleBtn = document.getElementById('male');
+            const femaleBtn = document.getElementById('female');
+
+            if (selectedGender === 'male') {
+                maleBtn.classList.add('selected');
+                femaleBtn.classList.remove('selected');
+            } else {
+                femaleBtn.classList.add('selected');
+                maleBtn.classList.remove('selected');
+            }
+
+            checkFormCompletion();
+        }
+
+        // Проверка заполненности формы
+        function checkFormCompletion() {
+            if (dogName !== "" && gender !== "") {
+                isFormComplete = true;
+                document.getElementById('next-btn').disabled = false;
+            } else {
+                isFormComplete = false;
+                document.getElementById('next-btn').disabled = true;
+            }
+        }
+
+        // Переход к следующему шагу
+        function nextStep() {
+            if (isFormComplete) {
+                alert("Информация сохранена! Переход к следующему шагу.");
+                // Здесь можно продолжить переход на следующий экран
+                // Например, window.location.href = 'nextPage.html';
+            } else {
+                alert("Пожалуйста, заполните все данные.");
+            }
+        }
     </script>
+
 </body>
 </html>
