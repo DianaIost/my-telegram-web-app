@@ -3,42 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мини-приложение</title>
+    <title>Мой хвостик</title>
     <style>
+        /* Основной стиль для фона */
         body {
             margin: 0;
-            padding: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('https://github.com/DianaIost/my-telegram-web-app/blob/main/Frame%201.png?raw=true');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .loading {
+            color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
-            font-size: 30px;
-            color: #fff;
+            overflow: hidden;
         }
 
-        /* Медиазапросы для разных устройств */
-        @media (max-width: 768px) {
-            body {
-                background-position: center center; /* Выравнивание для мобильных */
+        /* Стиль для фона загрузочного экрана */
+        .loading-container {
+            width: 100%;
+            height: 100%;
+            background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
+            background-size: contain; /* Подстраиваем изображение под экран */
+        }
+
+        /* Адаптивные стили для разных экранов */
+        @media (max-width: 600px) {
+            .loading-container {
+                background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
+                background-size: contain; /* Подстраиваем картинку для маленьких экранов */
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                background-size: auto 100%; /* Для маленьких экранов, адаптируем размер */
+        @media (min-width: 601px) {
+            .loading-container {
+                background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
+                background-size: contain; /* Подстраиваем картинку для больших экранов */
             }
+        }
+
+        /* Ожидаемый экран с текстом загрузки */
+        .loading {
+            font-size: 2.5em;
+            color: transparent;
         }
     </style>
 </head>
 <body>
-    <div class="loading">Добро пожаловать! Загружаем...</div>
+    <div class="loading-container">
+        <div class="loading">
+            <h1>Загрузка...</h1>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.loading').style.display = 'none';
+        }, 3000); // Время задержки 3 секунды для эффекта загрузки
+    </script>
 </body>
 </html>
