@@ -32,6 +32,7 @@
         h1 {
             font-size: 1.5em;
             margin-bottom: 20px;
+            font-family: 'ActayWide', sans-serif;
         }
 
         .input-field {
@@ -43,6 +44,7 @@
             border-radius: 10px;
             background-color: #f9f9f9;
             text-align: center;
+            font-family: 'ActayRegularItalic', sans-serif;
         }
 
         .input-field:focus {
@@ -50,19 +52,90 @@
             outline: none;
         }
 
+        /* Кнопки для выбора пола */
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Горизонтальное выравнивание */
+            margin: 20px 0;
+        }
+
         .button {
-            padding: 10px 20px;
+            width: 48%; /* Задаем одинаковую ширину кнопкам */
+            padding: 15px;
+            font-size: 1em;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+            font-family: 'ActayRegular', sans-serif;
+        }
+
+        .button:disabled {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .button-gray {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .button-active {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .button-gray:hover {
+            background-color: #ddd;
+        }
+
+        .button-active:hover {
+            background-color: #45a049;
+        }
+
+        .button-gray.selected {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .button-gray.selected:hover {
+            background-color: #45a049;
+        }
+
+        /* Выбор возраста с шрифтом ActayRegular */
+        select {
+            width: 48%;
+            padding: 10px;
+            margin: 10px 1%;
+            font-size: 1em;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            font-family: 'ActayRegular', sans-serif;
+        }
+
+        /* Кнопка "Далее" */
+        .next-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             font-size: 1.2em;
-            margin-top: 20px;
         }
 
-        .button:hover {
+        .next-btn:hover {
             background-color: #45a049;
+        }
+
+        /* Мелкий шрифт для текста о планах */
+        .small-text {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 15px;
         }
 
         /* Адаптивность */
@@ -72,7 +145,7 @@
             }
 
             .button-container {
-                flex-direction: column;
+                flex-direction: column; /* Вертикальное расположение на мобильных */
             }
 
             .button {
@@ -91,7 +164,6 @@
 
     <!-- Загрузочный экран -->
     <div id="loading-screen">
-        <!-- Замените путь на свой файл -->
         <img src="https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/Frame%201.png" alt="Загрузка...">
     </div>
 
@@ -99,17 +171,16 @@
     <div id="page2">
         <h1>Давайте познакомимся!</h1>
 
-        <!-- Поле ввода клички -->
-        <div class="input-field" id="dog-name" onclick="openNameInput()">Введите кличку</div>
+        <!-- Вопрос: "Как зовут вашего питомца?" -->
+        <div class="input-field" id="dog-name">Введите кличку</div>
 
-        <!-- Строки с шрифтом ActayRegularItalic -->
+        <!-- Вопрос: "Какой возраст?" -->
         <div class="input-field">Какой возраст?</div>
-        <div class="input-field">Зная возраст собаки, мы предложим лучший индивидуальный план для тренировок и прогулок.</div>
 
         <!-- Кнопки для выбора пола -->
         <div class="button-container">
-            <button class="button" id="male" onclick="selectGender('male')">Мальчик</button>
-            <button class="button" id="female" onclick="selectGender('female')">Девочка</button>
+            <button class="button button-gray" id="male" onclick="selectGender('male')">Мальчик</button>
+            <button class="button button-gray" id="female" onclick="selectGender('female')">Девочка</button>
         </div>
 
         <!-- Поля для выбора возраста -->
@@ -131,8 +202,11 @@
             </select>
         </div>
 
+        <!-- Мелкий шрифт с описанием -->
+        <div class="small-text">Зная возраст собаки, мы предложим лучший индивидуальный план для тренировок и прогулок.</div>
+
         <!-- Кнопка "Далее" -->
-        <button class="button" id="next-btn" onclick="nextStep()">Далее</button>
+        <button class="next-btn" id="next-btn" onclick="nextStep()">Далее</button>
     </div>
 
     <script>
@@ -167,15 +241,15 @@
             const femaleBtn = document.getElementById('female');
             
             if (selectedGender === 'male') {
-                maleBtn.style.backgroundColor = '#4CAF50';
-                femaleBtn.style.backgroundColor = '#f0f0f0';
+                maleBtn.classList.add('selected');
+                femaleBtn.classList.remove('selected');
             } else {
-                femaleBtn.style.backgroundColor = '#4CAF50';
-                maleBtn.style.backgroundColor = '#f0f0f0';
+                femaleBtn.classList.add('selected');
+                maleBtn.classList.remove('selected');
             }
         }
 
-        // Проверка и переход на следующий шаг
+        // Переход на следующий шаг
         function nextStep() {
             alert('Информация сохранена! Переход к следующему шагу.');
         }
