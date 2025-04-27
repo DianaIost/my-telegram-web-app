@@ -6,6 +6,28 @@
     <title>Мини-приложение</title>
 
     <style>
+        /* Подключаем шрифты */
+        @font-face {
+            font-family: 'ActayWide';
+            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/ActayWide-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'ActayRegular';
+            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/Actay-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ActayRegularItalic';
+            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/Actay-RegularItalic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
         /* Загрузочный экран */
         #loading-screen {
             display: flex;
@@ -25,14 +47,14 @@
         #page2 {
             display: none; /* Скрываем страницу 2 по умолчанию */
             text-align: center;
-            font-family: 'Arial', sans-serif;
+            font-family: 'ActayRegular', sans-serif;
             margin: 20px;
         }
 
         h1 {
+            font-family: 'ActayWide', sans-serif; /* Применяем шрифт ActayWide для заголовка */
             font-size: 1.5em;
             margin-bottom: 20px;
-            font-family: 'ActayWide', sans-serif;
         }
 
         .input-field {
@@ -61,8 +83,8 @@
 
         .button {
             width: 48%; /* Задаем одинаковую ширину кнопкам */
-            padding: 15px;
-            font-size: 1em;
+            padding: 12px;
+            font-size: 0.9em;
             text-align: center;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -195,16 +217,18 @@
                 <option value="6">6 лет</option>
                 <option value="7">7 лет</option>
                 <option value="8">8 лет</option>
-		<option value="9">9 лет</option>
-		<option value="10">10 лет</option>
-		<option value="11">11 лет</option>
-		<option value="12">12 лет</option>
-		<option value="13">13 лет</option>
-		<option value="14">14 лет</option>
-		<option value="15">15 лет</option>
-		<option value="9">9 лет</option>
-		<option value="9">9 лет</option>
-		<option value="9">9 лет</option>
+                <option value="9">9 лет</option>
+                <option value="10">10 лет</option>
+                <option value="11">11 лет</option>
+                <option value="12">12 лет</option>
+                <option value="13">13 лет</option>
+                <option value="14">14 лет</option>
+                <option value="15">15 лет</option>
+                <option value="16">16 лет</option>
+                <option value="17">17 лет</option>
+                <option value="18">18 лет</option>
+                <option value="19">19 лет</option>
+                <option value="20">20 лет</option>
             </select>
 
             <select id="months">
