@@ -22,7 +22,7 @@
 
         /* Страница 2 */
         #page2 {
-            display: none;
+            display: none; /* Скрываем страницу 2 по умолчанию */
             text-align: center;
             font-family: 'Arial', sans-serif;
             margin: 20px;
@@ -108,7 +108,7 @@
             document.getElementById('dog-name').innerHTML = '';
             document.getElementById('dog-name').appendChild(input);
 
-            // Когда пользователь завершает ввод, обновляем текст
+            // Автоматически открывается клавиатура
             input.addEventListener('blur', function() {
                 const dogName = input.value;
                 if (dogName !== '') {
@@ -131,3 +131,11 @@
             }
         }
 
+        // Проверка и переход на следующий шаг
+        function nextStep() {
+            alert('Информация сохранена! Переход к следующему шагу.');
+        }
+    </script>
+
+</body>
+</html>
