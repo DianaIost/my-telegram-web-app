@@ -6,28 +6,6 @@
     <title>Мини-приложение</title>
 
     <style>
-        /* Подключаем шрифты */
-        @font-face {
-            font-family: 'ActayWide';
-            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/ActayWide-Bold.otf') format('opentype');
-            font-weight: bold;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: 'ActayRegular';
-            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/Actay-Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ActayRegularItalic';
-            src: url('https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/fonts/Actay-RegularItalic.otf') format('opentype');
-            font-weight: normal;
-            font-style: italic;
-        }
-
         /* Загрузочный экран */
         #loading-screen {
             display: flex;
@@ -47,16 +25,17 @@
         #page2 {
             display: none; /* Скрываем страницу 2 по умолчанию */
             text-align: center;
-            font-family: 'ActayRegular', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 20px;
         }
 
         h1 {
-            font-family: 'ActayWide', sans-serif; /* Применяем шрифт ActayWide для заголовка */
             font-size: 1.5em;
             margin-bottom: 20px;
+            font-family: 'ActayWide', sans-serif;
         }
 
+        /* Текстовые поля с шрифтами */
         .input-field {
             width: 100%;
             padding: 15px;
@@ -100,6 +79,7 @@
         .button-gray {
             background-color: #f0f0f0;
             color: #333;
+            border: 2px solid #ccc;
         }
 
         .button-active {
@@ -289,9 +269,13 @@
             if (selectedGender === 'male') {
                 maleBtn.classList.add('selected');
                 femaleBtn.classList.remove('selected');
+                maleBtn.classList.add('button-active');
+                femaleBtn.classList.remove('button-active');
             } else {
                 femaleBtn.classList.add('selected');
                 maleBtn.classList.remove('selected');
+                femaleBtn.classList.add('button-active');
+                maleBtn.classList.remove('button-active');
             }
         }
 
