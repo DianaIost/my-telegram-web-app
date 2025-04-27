@@ -64,4 +64,87 @@
         }
 
         /* Абзацы */
-        p
+        p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Стили для формы */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Загрузочный экран с картинкой -->
+<div id="loadingScreen" class="loading-screen">
+    <img src="https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/Frame%201.png" alt="Загрузка...">
+</div>
+
+<!-- Основной контент -->
+<div class="container">
+    <h1>Добро пожаловать на страницу!</h1>
+    <p>Введите кличку вашего питомца:</p>
+    
+    <!-- Форма для ввода -->
+    <form id="petForm">
+        <label for="nickname">Как зовут вашего питомца?</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Введите кличку" required />
+        
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+<script>
+    // Ожидание загрузки страницы и скрытие загрузочного экрана
+    window.onload = function() {
+        setTimeout(function() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 3000); // 3 секунды на отображение загрузки
+    };
+
+    // Обработка отправки формы
+    document.getElementById('petForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nickname = document.getElementById('nickname').value;
+        
+        if (nickname) {
+            alert('Спасибо! Кличка вашего питомца: ' + nickname);
+        } else {
+            alert('Пожалуйста, введите кличку!');
+        }
+    });
+</script>
+
+</body>
+</html>
