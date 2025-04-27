@@ -4,9 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой хвостик</title>
+    <style>
+        /* Стиль для фона загрузочного экрана */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Стиль для текста на загрузочном экране */
+        h1 {
+            font-size: 2.5em;
+        }
+
+        /* Элементы, которые будут показываться после загрузки */
+        .loaded {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Добро пожаловать в приложение "Мой хвостик"!</h1>
-    <p>Здесь будет приложение для отслеживания здоровья и состояния вашей собаки!</p>
+    <div class="loading">
+        <h1>Загрузка...</h1>
+    </div>
+    <div class="loaded">
+        <h1>Добро пожаловать в приложение "Мой хвостик"!</h1>
+    </div>
+
+    <script>
+        // Имитация загрузки и переключение экранов
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.loaded').style.display = 'block';
+            }, 3000); // Время задержки 3 секунды для эффекта загрузки
+        };
+    </script>
 </body>
 </html>
