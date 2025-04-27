@@ -3,287 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мини-приложение</title>
-
+    <title>Пример страницы</title>
+    <!-- Подключение внешнего шрифта -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        /* Загрузочный экран */
-        #loading-screen {
+        /* Базовые стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fff;
-            position: relative;
+            overflow: hidden;
         }
 
-        #loading-screen img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        /* Страница 2 */
-        #page2 {
-            display: none; /* Скрываем страницу 2 по умолчанию */
-            text-align: center;
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-family: 'ActayWide', sans-serif;
-        }
-
-        /* Текстовые поля с шрифтами */
-        .input-field {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            margin: 10px 0;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            text-align: center;
-            font-family: 'ActayRegularItalic', sans-serif;
-        }
-
-        .input-field:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        /* Кнопки для выбора пола */
-        .button-container {
+        /* Загрузочный экран с картинкой */
+        .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between; /* Горизонтальное выравнивание */
-            margin: 20px 0;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+            z-index: 1000;
         }
 
-        .button {
-            width: 48%; /* Задаем одинаковую ширину кнопкам */
-            padding: 12px;
-            font-size: 0.9em;
+        .loading-screen img {
+            max-width: 100%; /* Ограничиваем максимальный размер изображения */
+            max-height: 100%; /* Ограничиваем максимальную высоту изображения */
+        }
+
+        /* Скрытие загрузочного экрана */
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Основной контейнер */
+        .container {
             text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            padding: 20px;
+            background-color: white;
             border-radius: 10px;
-            font-family: 'ActayRegular', sans-serif;
-        }
-
-        .button:disabled {
-            background-color: #f0f0f0;
-            cursor: not-allowed;
-        }
-
-        .button-gray {
-            background-color: #f0f0f0;
-            color: #333;
-            border: 2px solid #ccc;
-        }
-
-        .button-active {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-
-        .button-gray:hover {
-            background-color: #ddd;
-        }
-
-        .button-active:hover {
-            background-color: #45a049;
-        }
-
-        .button-gray.selected {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-
-        .button-gray.selected:hover {
-            background-color: #45a049;
-        }
-
-        /* Выбор возраста с шрифтом ActayRegular */
-        select {
-            width: 48%;
-            padding: 10px;
-            margin: 10px 1%;
-            font-size: 1em;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            font-family: 'ActayRegular', sans-serif;
-        }
-
-        /* Кнопка "Далее" */
-        .next-btn {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
             width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
         }
 
-        .next-btn:hover {
-            background-color: #45a049;
+        /* Заголовок */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
         }
 
-        /* Мелкий шрифт для текста о планах */
-        .small-text {
-            font-size: 0.9em;
-            color: #777;
-            margin-top: 15px;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-            }
-
-            .button-container {
-                flex-direction: column; /* Вертикальное расположение на мобильных */
-            }
-
-            .button {
-                width: 100%;
-                margin: 10px 0;
-            }
-
-            select {
-                width: 100%;
-                margin: 10px 0;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Загрузочный экран -->
-    <div id="loading-screen">
-        <img src="https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/Frame%201.png" alt="Загрузка...">
-    </div>
-
-    <!-- Страница 2 -->
-    <div id="page2">
-        <h1>Давайте познакомимся!</h1>
-
-        <!-- Вопрос: "Как зовут вашего питомца?" -->
-        <div class="input-field" id="dog-name">Введите кличку</div>
-
-        <!-- Вопрос: "Какой возраст?" -->
-        <div class="input-field">Какой возраст?</div>
-
-        <!-- Кнопки для выбора пола -->
-        <div class="button-container">
-            <button class="button button-gray" id="male" onclick="selectGender('male')">Мальчик</button>
-            <button class="button button-gray" id="female" onclick="selectGender('female')">Девочка</button>
-        </div>
-
-        <!-- Поля для выбора возраста -->
-        <div>
-            <select id="years">
-                <option value="0">0 лет</option>
-                <option value="1">1 год</option>
-                <option value="2">2 года</option>
-                <option value="3">3 года</option>
-                <option value="4">4 года</option>
-                <option value="5">5 лет</option>
-                <option value="6">6 лет</option>
-                <option value="7">7 лет</option>
-                <option value="8">8 лет</option>
-                <option value="9">9 лет</option>
-                <option value="10">10 лет</option>
-                <option value="11">11 лет</option>
-                <option value="12">12 лет</option>
-                <option value="13">13 лет</option>
-                <option value="14">14 лет</option>
-                <option value="15">15 лет</option>
-                <option value="16">16 лет</option>
-                <option value="17">17 лет</option>
-                <option value="18">18 лет</option>
-                <option value="19">19 лет</option>
-                <option value="20">20 лет</option>
-            </select>
-
-            <select id="months">
-                <option value="0">0 месяцев</option>
-                <option value="1">1 месяц</option>
-                <option value="2">2 месяца</option>
-                <option value="3">3 месяца</option>
-                <option value="4">4 месяца</option>
-                <option value="5">5 месяцев</option>
-                <option value="6">6 месяцев</option>
-                <option value="7">7 месяцев</option>
-                <option value="8">8 месяцев</option>
-                <option value="9">9 месяцев</option>
-                <option value="10">10 месяцев</option>
-                <option value="11">11 месяцев</option>
-                <option value="12">12 месяцев</option>
-            </select>
-        </div>
-
-        <!-- Мелкий шрифт с описанием -->
-        <div class="small-text">Зная возраст собаки, мы предложим лучший индивидуальный план для тренировок и прогулок.</div>
-
-        <!-- Кнопка "Далее" -->
-        <button class="next-btn" id="next-btn" onclick="nextStep()">Далее</button>
-    </div>
-
-    <script>
-        // Переход на страницу 2 через 3 секунды
-        setTimeout(function() {
-            document.getElementById('loading-screen').style.display = 'none'; // Скрыть загрузочный экран
-            document.getElementById('page2').style.display = 'block'; // Показать страницу 2
-        }, 3000); // Задержка 3 секунды (3000 миллисекунд)
-
-        // Открытие поля для ввода клички собаки
-        function openNameInput() {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.placeholder = 'Введите кличку';
-            input.classList.add('input-field');
-            input.autofocus = true;
-            document.getElementById('dog-name').innerHTML = '';
-            document.getElementById('dog-name').appendChild(input);
-
-            // Автоматически открывается клавиатура
-            input.addEventListener('blur', function() {
-                const dogName = input.value;
-                if (dogName !== '') {
-                    document.getElementById('dog-name').innerText = dogName;
-                }
-            });
-        }
-
-        // Выбор пола собаки
-        function selectGender(selectedGender) {
-            const maleBtn = document.getElementById('male');
-            const femaleBtn = document.getElementById('female');
-            
-            if (selectedGender === 'male') {
-                maleBtn.classList.add('selected');
-                femaleBtn.classList.remove('selected');
-                maleBtn.classList.add('button-active');
-                femaleBtn.classList.remove('button-active');
-            } else {
-                femaleBtn.classList.add('selected');
-                maleBtn.classList.remove('selected');
-                femaleBtn.classList.add('button-active');
-                maleBtn.classList.remove('button-active');
-            }
-        }
-
-        // Переход на следующий шаг
-        function nextStep() {
-            alert('Информация сохранена! Переход к следующему шагу.');
-        }
-    </script>
-
-</body>
-</html>
+        /* Абзацы */
+        p
