@@ -23,28 +23,28 @@
             width: 100%;
             height: 100%;
             background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-            background-size: contain; /* Подстраиваем изображение под экран */
-        }
-
-        /* Адаптивные стили для разных экранов */
-        @media (max-width: 600px) {
-            .loading-container {
-                background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-                background-size: contain; /* Подстраиваем картинку для маленьких экранов */
-            }
-        }
-
-        @media (min-width: 601px) {
-            .loading-container {
-                background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-                background-size: contain; /* Подстраиваем картинку для больших экранов */
-            }
+            background-size: cover; /* Масштабируем картинку, чтобы она заполнила весь экран */
+            background-position: center; /* Центрируем изображение */
         }
 
         /* Ожидаемый экран с текстом загрузки */
         .loading {
             font-size: 2.5em;
             color: transparent;
+        }
+
+        /* Адаптивные стили для мобильных устройств */
+        @media (max-width: 600px) {
+            .loading-container {
+                background-size: cover; /* Для мобильных устройств */
+            }
+        }
+
+        /* Для экранов от 601px */
+        @media (min-width: 601px) {
+            .loading-container {
+                background-size: cover; /* Для планшетов и более крупных экранов */
+            }
         }
     </style>
 </head>
