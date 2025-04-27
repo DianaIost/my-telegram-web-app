@@ -19,14 +19,10 @@
             text-align: center;
         }
 
-        /* Стиль для текста на загрузочном экране */
-        h1 {
+        /* Ожидаемый экран с текстом загрузки */
+        .loading {
             font-size: 2.5em;
-        }
-
-        /* Элементы, которые будут показываться после загрузки */
-        .loaded {
-            display: none;
+            color: transparent;
         }
     </style>
 </head>
@@ -34,16 +30,12 @@
     <div class="loading">
         <h1>Загрузка...</h1>
     </div>
-    <div class="loaded">
-        <h1>Добро пожаловать в приложение "Мой хвостик"!</h1>
-    </div>
 
     <script>
         // Имитация загрузки и переключение экранов
         window.onload = function() {
             setTimeout(function() {
                 document.querySelector('.loading').style.display = 'none';
-                document.querySelector('.loaded').style.display = 'block';
             }, 3000); // Время задержки 3 секунды для эффекта загрузки
         };
     </script>
