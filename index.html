@@ -10,7 +10,7 @@
             margin: 0;
             height: 100vh;
             background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-            background-size: cover;
+            background-size: cover; /* Картинка будет масштабироваться на весь экран */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,29 +33,12 @@
     </div>
 
     <script>
-        // Инициализация полноэкранного режима при загрузке
+        // Имитация загрузки и переключение экранов
         window.onload = function() {
-            // Запрос на включение полноэкранного режима
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.requestFullscreen();
-            }
-
             setTimeout(function() {
                 document.querySelector('.loading').style.display = 'none';
             }, 3000); // Время задержки 3 секунды для эффекта загрузки
         };
-
-        // Функция для выхода из полноэкранного режима (при необходимости)
-        function exitFullscreen() {
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.exitFullscreen();
-            }
-        }
-
-        // Пример: Автоматический выход через 10 секунд (для теста)
-        setTimeout(function() {
-            exitFullscreen(); // Это можно вызвать в нужный момент
-        }, 10000); // Выход через 10 секунд
     </script>
 </body>
 </html>
