@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой хвостик</title>
+    <title>Мини-приложение</title>
     <style>
-        /* Основной стиль для фона */
         body {
             margin: 0;
+            padding: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            overflow: hidden;
+            background-image: url('https://path.to/your/image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* Стиль для фона загрузочного экрана */
-        .loading-container {
-            width: 422px;  /* Фиксированный размер по ширине */
-            height: 625px; /* Фиксированный размер по высоте */
-            background: url('https://github.com/DianaIost/my-telegram-web-app/raw/main/Frame%201.png') no-repeat center center;
-            background-size: contain; /* Это сохраняет пропорции изображения */
-        }
-
-        /* Ожидаемый экран с текстом загрузки */
         .loading {
-            font-size: 2.5em;
-            color: transparent;
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Медиазапросы для разных устройств */
+        @media (max-width: 768px) {
+            body {
+                background-position: center center; /* Выравнивание для мобильных */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-size: auto 100%; /* Для маленьких экранов, адаптируем размер */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="loading">
-            <h1>Загрузка...</h1>
-        </div>
-    </div>
-
-    <script>
-        setTimeout(function() {
-            document.querySelector('.loading').style.display = 'none';
-        }, 3000); // Время задержки 3 секунды для эффекта загрузки
-    </script>
+    <div class="loading">Добро пожаловать! Загружаем...</div>
 </body>
 </html>
