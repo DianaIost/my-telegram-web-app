@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мини-приложение</title>
+
     <style>
         /* Загрузочный экран */
         #loading-screen {
@@ -36,7 +37,7 @@
         .input-field {
             width: 100%;
             padding: 15px;
-            font-size: 1em;
+            font-size: 1.2em;
             margin: 10px 0;
             border: 2px solid #ccc;
             border-radius: 10px;
@@ -63,28 +64,71 @@
         .button:hover {
             background-color: #45a049;
         }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            select {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Загрузочный экран -->
     <div id="loading-screen">
+        <!-- Замените путь на свой файл -->
         <img src="https://raw.githubusercontent.com/DianaIost/my-telegram-web-app/main/Frame%201.png" alt="Загрузка...">
     </div>
 
     <!-- Страница 2 -->
     <div id="page2">
         <h1>Давайте познакомимся!</h1>
-        
+
         <!-- Поле ввода клички -->
         <div class="input-field" id="dog-name" onclick="openNameInput()">Введите кличку</div>
+
+        <!-- Строки с шрифтом ActayRegularItalic -->
         <div class="input-field">Какой возраст?</div>
         <div class="input-field">Зная возраст собаки, мы предложим лучший индивидуальный план для тренировок и прогулок.</div>
 
         <!-- Кнопки для выбора пола -->
-        <div>
+        <div class="button-container">
             <button class="button" id="male" onclick="selectGender('male')">Мальчик</button>
             <button class="button" id="female" onclick="selectGender('female')">Девочка</button>
+        </div>
+
+        <!-- Поля для выбора возраста -->
+        <div>
+            <select id="years">
+                <option value="0">0 лет</option>
+                <option value="1">1 год</option>
+                <option value="2">2 года</option>
+                <option value="3">3 года</option>
+                <option value="4">4 года</option>
+            </select>
+
+            <select id="months">
+                <option value="0">0 месяцев</option>
+                <option value="1">1 месяц</option>
+                <option value="2">2 месяца</option>
+                <option value="3">3 месяца</option>
+                <option value="4">4 месяца</option>
+            </select>
         </div>
 
         <!-- Кнопка "Далее" -->
